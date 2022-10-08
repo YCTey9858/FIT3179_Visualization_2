@@ -1,0 +1,91 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Air Pollution Death Rate",
+  "title": "Air Pollution Death Rate per 100,000 population in the World",
+  "width": "container",
+  "data": {
+    "url": "https://raw.githubusercontent.com/YCTey9858/FIT3179_Visualization_2/main/data/airPollutionDeathRate.csv"
+  },
+  "params": [
+    {
+      "name": "Disease",
+      "value": "Total",
+      "bind": {
+        "input": "select",
+        "options": [
+          "Total",
+          "Lower respiratory infections",
+          "Trachea, bronchus, lung cancers",
+          "Ischaemic heart disease",
+          "Stroke",
+          "Chronic obstructive pulmonary disease"
+        ],
+        "labels": [
+          "Total",
+          "Lower respiratory infections",
+          "Trachea, bronchus, lung cancers",
+          "Ischaemic heart disease",
+          "Stroke",
+          "Chronic obstructive pulmonary disease"
+        ],
+        "name": "Disease Selection: "
+      }
+    }
+  ],
+  "transform": [
+    {"filter": "datum.Dim2 == Disease"},
+    {"filter": "datum.Dim1 == 'Both sexes'"},
+    {
+      "filter": "datum.Indicator == \"Ambient and household air pollution attributable death rate (per 100 000 population, age-standardized)\""
+    },
+    {"calculate": "datum['First Tooltip']", "as": "Air Pollution Death Rate"}
+  ],
+  "encoding": {
+    "color": {
+      "field": "Air Pollution Death Rate",
+      "scale": {"range": ["white", "red"]}
+    },
+    "y": {
+      "field": "Location",
+      "type": "nominal",
+      "sort": "-x",
+      "title": "Country"
+    },
+    "x": {
+      "aggregate": "sum",
+      "field": "Air Pollution Death Rate",
+      "type": "quantitative",
+      "title": null,
+      "scale": {"domain": [0, 1000]},
+      "axis": null
+    }
+  },
+  "layer": [
+    {
+      "mark": "bar",
+      "encoding": {
+        "color": {
+          "field": "Air Pollution Death Rate",
+          "type": "quantitative",
+          "title": "Air Pollution Death Rate"
+        },
+        "tooltip": [
+          {"field": "Location", "type": "nominal", "title": "Country"},
+          {
+            "field": "Air Pollution Death Rate",
+            "type": "quantitative",
+            "title": "Air Pollution Death Rate per 100,000 population"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {"type": "text", "align": "left", "xOffset": 5, "aria": false},
+      "encoding": {
+        "text": {"field": "Air Pollution Death Rate", "type": "quantitative"},
+        "color": {"value": "black"}
+      }
+    }
+  ],
+  "config": {}
+}
