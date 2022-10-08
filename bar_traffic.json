@@ -1,0 +1,66 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Vega-Lite version of bar chart from https://observablehq.com/@d3/learn-d3-scales.",
+  "title": "Road Traffic Death Rate per 100,000 Population in the World",
+  "width": 500,
+  "data": {
+    "url": "https://raw.githubusercontent.com/YCTey9858/FIT3179_Visualization_2/main/data/roadTrafficDeaths.csv"
+  },
+  "transform": [
+    {
+      "calculate": "datum['First Tooltip']",
+      "as": "Road Traffic Death Rate per 100,000 Population"
+    }
+  ],
+  "encoding": {
+    "color": {
+      "field": "Road Traffic Death Rate per 100,000 Population",
+      "scale": {"range": ["white", "red"]}
+    },
+    "y": {
+      "field": "Location",
+      "type": "nominal",
+      "sort": "-x",
+      "title": "Country"
+    },
+    "x": {
+      "aggregate": "sum",
+      "field": "Road Traffic Death Rate per 100,000 Population",
+      "type": "quantitative",
+      "title": null,
+      "scale": {"domain": [0, 50]},
+      "axis": null
+    }
+  },
+  "layer": [
+    {
+      "mark": "bar",
+      "encoding": {
+        "color": {
+          "field": "Road Traffic Death Rate per 100,000 Population",
+          "type": "quantitative",
+          "title": "Traffice Death Rate"
+        },
+        "tooltip": [
+          {"field": "Location", "type": "nominal", "title": "Country"},
+          {
+            "field": "Road Traffic Death Rate per 100,000 Population",
+            "type": "quantitative",
+            "title": "Road Traffic Death Rate per 100,000 Population"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {"type": "text", "align": "left", "xOffset": 5, "aria": false},
+      "encoding": {
+        "text": {
+          "field": "Road Traffic Death Rate per 100,000 Population",
+          "type": "quantitative"
+        },
+        "color": {"value": "black"}
+      }
+    }
+  ],
+  "config": {}
+}
