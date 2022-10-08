@@ -20,7 +20,7 @@
   ],
   "transform": [
     {"filter": "datum.Period == Year"},
-    {"filter": "datum.Dim1 == \"Both sexes\""},
+    {"filter": "datum.Dim1 == 'Both sexes'"},
     {
       "calculate": "datum['First Tooltip']",
       "as": "Crude suicide rates per 100,000 population"
