@@ -1,0 +1,110 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": "container",
+  "title": "Healthy life expectancy at birth in each region",
+  "data": {
+    "url": "https://raw.githubusercontent.com/YCTey9858/FIT3179_Visualization_2/main/data/HALeWHOregionLifeExpectancyAtBirth.csv"
+  },
+  "transform": [
+    {"filter": "datum.Period == Year"},
+    {"filter": "datum.Dim1 == Gender"},
+    {
+      "calculate": "datum['% OF HALE in life expectancy']",
+      "as": "Percentage of HALE in life expectancy"
+    }
+  ],
+  "params": [
+    {
+      "name": "continent_highlight",
+      "select": {"type": "point", "fields": ["Location"]},
+      "bind": "legend"
+    },
+    {
+      "name": "Year",
+      "value": 2019,
+      "bind": {
+        "input": "select",
+        "options": [2019, 2015, 2010, 2000],
+        "labels": ["2019", "2015", "2010", "2000"],
+        "name": "Year Selection: "
+      }
+    },
+    {
+      "name": "Gender",
+      "value": "Both sexes",
+      "bind": {
+        "input": "select",
+        "options": ["Both sexes", "Male", "Female"],
+        "labels": ["Both sexes", "Male", "Female"],
+        "name": "Gender Selection: "
+      }
+    }
+  ],
+  "mark": "circle",
+  "encoding": {
+    "x": {
+      "field": "Life expectany",
+      "type": "quantitative",
+      "title": "Life expectany",
+      "axis": {"tickCount": 10},
+      "scale": {"domain": [1, 100]}
+    },
+    "y": {
+      "field": "Hale Expectency",
+      "type": "quantitative",
+      "title": "Hale expectany",
+      "axis": {"tickCount": 10},
+      "scale": {"domain": [1, 100]}
+    },
+    "color": {
+      "field": "Location",
+      "title": "Continent",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Africa",
+          "Americas",
+          "South-East Asia",
+          "Europe",
+          "Eastern Mediterranean",
+          "Western Pacific"
+        ],
+        "range": [
+          "#e41a1c",
+          "#984ea3",
+          "#ff7f00",
+          "#a6c8e9",
+          "#377eb8",
+          "#a65628"
+        ]
+      }
+    },
+    "opacity": {
+      "condition": {"param": "continent_highlight", "value": 0.8},
+      "value": 0.1
+    },
+    "size": {
+      "field": "Percentage of HALE in life expectancy",
+      "type": "quantitative",
+      "scale": {
+        "type": "threshold",
+        "domain": [20, 40, 60, 80, 100],
+        "range": [10, 50, 150, 200, 300, 400]
+      },
+      "legend": {"format": ".1s"}
+    },
+    "tooltip": [
+      {"field": "Location", "type": "nominal", "title": "Continent"},
+      {"field": "Life expectany", "type": "quantitative", "format": ","},
+      {"field": "Hale Expectency", "type": "quantitative", "format": ","},
+      {
+        "field": "Percentage of HALE in life expectancy",
+        "type": "quantitative",
+        "format": ",",
+        "title": "Percentage of HALE in life expectancy (%)"
+      }
+    ]
+  },
+  "config": {}
+}
