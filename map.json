@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "World Universal Health Coverage Index of Service Coverage (SCI) (2015)",
-  "width": 800,
-  "height": 400,
+  "width": "container",
+  "height": "container",
   "background": "lightblue",
   "projection": {"type": "equirectangular"},
   "data": {
@@ -21,6 +21,7 @@
       }
     },
     {"calculate": "max(datum['Number'], 0)", "as": "UHC"}
+    
   ],
   "layer": [
     {
