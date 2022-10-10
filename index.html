@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>FIT3179 Assignment 2</title>
+  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+  <!-- Import pure.css -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+    integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+  <!-- CSS file -->
+  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+
+
+</head>
+
+<body>
+
+  <div class="page">
+
+    <!-- Title -->
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h1>FIT3179 Assignment 2 - World Health and Life Statistic</h1>
+        <p>This page is the FIT3179 Visualisation 2. The topic of this visualisation is world health statistic. Thus, we will be investigating health index of each countries from different aspect.</p>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- Map -->
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-3">
+        <div class="description description-left">
+          <h2>World Universal Health Coverage Index of Service Coverage</h2>
+          <p>Universal Health Coverage Index is is an index reported on a unitless scale of 0 to 100, which is computed as the geometric mean of 14 tracer indicators of health service coverage. 
+          From the map, we can observe that developed country such as United States, Canada, Australia are having a high UHC index above 80 in 2015. 
+            This means that these countries are having nice healthcare service and infrastructure for their citizen. Thus, the higher the UHC index, the people in that country will be more healthier.</p>
+        </div>
+      </div>
+      <div class="pure-u-2-3">
+        <div id="mapvis" class="vis-container"></div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- Bubble Life  -->
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-1-1">
+          <h1>Buuble Life Stata</h1>
+          <p>TBC</p>
+        </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-1-1">
+            <div id="bubbleLifevis" class="vis-container"></div>
+          </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- Health Work Force and Living Basic  -->
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-1-1">
+          <h1>Work Force and Life Stata</h1>
+          <p>TBC</p>
+        </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-1-2">
+            <div id="healthcareworkvis" class="vis-container"></div>
+          </div>
+        <div class="pure-u-1-2">
+          <div id="basiclivingindex" class="vis-container"></div>
+        </div>
+      </div>
+      <!-- end pure grid group -->
+
+    
+    <!-- Death Index  -->
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-1-1">
+          <h1>Death rate of some main issue</h1>
+          <p>TBC</p>
+        </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-1-3">
+            <div id="suicidebarvis" class="vis-container"></div>
+          </div>
+        <div class="pure-u-1-3">
+          <div id="airpolutionbarvis" class="vis-container"></div>
+        </div>
+        <div class="pure-u-1-3">
+            <div id="trafficbarvis" class="vis-container"></div>
+          </div>
+      </div>
+      <!-- end pure grid group -->
+
+    <div class="pure-g">
+      <div class="pure-u-1-1 small-font">
+        <p>This visualisation is created by <a href="https://github.com/YCTey9858" target="_blank">Yi Chuan Tey</a>. The datasource is <a href="https://www.kaggle.com/datasets/utkarshxy/who-worldhealth-statistics-2020-complete" target=" _blank">from kaggle</href>.</p>
+      </div>
+    </div>
+
+
+  </div> <!-- end page -->
+
+  <script type="text/javascript">
+    var mapvis = "./map.json";
+    var suicidebarvis = "./bar.json";
+    var airpolutionbarvis = "./bar_air.json";
+    var trafficbarvis = "./bar_traffic.json";
+    var bubbleLifevis = "./bubble.json";
+    var basiclivingindex = "./ParallelCoor.json";
+    var healthcareworkvis = "./radial.json";
+
+    vegaEmbed('#mapvis', mapvis, { "actions": false });
+
+    vegaEmbed('#suicidebarvis', suicidebarvis, { "actions": false }).then(function (result) {
+      
+    }).catch(console.error);
+
+    vegaEmbed('#airpolutionbarvis', airpolutionbarvis, { "actions": false }).then(function (result) {
+      
+    }).catch(console.error);
+
+    vegaEmbed('#trafficbarvis', trafficbarvis, { "actions": false }).then(function (result) {
+      
+    }).catch(console.error);
+
+    vegaEmbed('#bubbleLifevis', bubbleLifevis, { "actions": false }).then(function (result) {
+      
+    }).catch(console.error);
+
+    vegaEmbed('#basiclivingindex', basiclivingindex, { "actions": false }).then(function (result) {
+      
+    }).catch(console.error);
+
+    vegaEmbed('#healthcareworkvis', healthcareworkvis, { "actions": false }).then(function (result) {
+      
+    }).catch(console.error);
+  </script>
+</body>
+
+</html>
