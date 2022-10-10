@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Air Pollution Death Rate",
   "title": "Air Pollution Death Rate per 100,000 population in the World",
-  "width": "container",
+  "width": "400",
   "data": {
     "url": "https://raw.githubusercontent.com/YCTey9858/FIT3179_Visualization_2/main/data/airPollutionDeathRate.csv"
   },
