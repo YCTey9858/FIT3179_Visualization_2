@@ -63,8 +63,8 @@
       }
     }
   ],
-  "width": 600,
-  "height": 600,
+  "width": 1200,
+  "height": 1200,
   "transform": [
     {
       "filter": "datum['Population using at least basic drinking-water services (%)']"
@@ -134,7 +134,7 @@
     {
       "encoding": {
         "x": {"type": "nominal", "field": "key"},
-        "y": {"value": 300}
+        "y": {"value": 600}
       },
       "layer": [
         {
@@ -147,7 +147,7 @@
     {
       "encoding": {
         "x": {"type": "nominal", "field": "key"},
-        "y": {"value": 600}
+        "y": {"value": 1200}
       },
       "layer": [
         {
