@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Healthcare Workforce in each Country per 10,000 people (%)",
   "width": "container",
-  "height": "container",
+  "height": 500,
   "data": {
     "url": "https://raw.githubusercontent.com/YCTey9858/FIT3179_Visualization_2/main/data/Health_workforce.csv",
     "format": {"type": "csv", "parse": {"First Tooltip": "number"}}
