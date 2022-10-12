@@ -4,7 +4,8 @@
   "title": "Crude suicide rates per 100,000 population in the World",
   "width": "container",
   "data": {
-    "url": "https://raw.githubusercontent.com/YCTey9858/FIT3179_Visualization_2/main/data/crudeSuicideRates.csv"
+    "url": "https://raw.githubusercontent.com/YCTey9858/FIT3179_Visualization_2/main/data/crudeSuicideRates.csv",
+    "format":{"type": "csv", "parse": {"First Tooltip" : "number"}}
   },
   "params": [
     {
@@ -24,7 +25,13 @@
     {
       "calculate": "datum['First Tooltip']",
       "as": "Crude suicide rates per 100,000 population"
-    }
+    },
+    { "window": [
+          { "op": "row_number", 
+          "field": "First Tooltip",
+            "as": "tag_rank"}],
+            "sort": [{"field": "First Tooltip", "order": "descending"}]},
+        { "filter": "datum.tag_rank <= 15"}  
   ],
   "encoding": {
     "color": {
