@@ -1,10 +1,11 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Air Pollution Death Rate",
-  "title": "Air Pollution Death Rate per 100,000 population in the World",
+  "title": "Air Pollution Death Rate per 100,000 population",
   "width": "container",
   "data": {
-    "url": "https://raw.githubusercontent.com/YCTey9858/FIT3179_Visualization_2/main/data/airPollutionDeathRate.csv"
+    "url": "https://raw.githubusercontent.com/YCTey9858/FIT3179_Visualization_2/main/data/airPollutionDeathRate.csv",
+    "format":{"type": "csv", "parse": {"First Tooltip" : "number"}}
   },
   "params": [
     {
@@ -38,7 +39,13 @@
     {
       "filter": "datum.Indicator == \"Ambient and household air pollution attributable death rate (per 100 000 population, age-standardized)\""
     },
-    {"calculate": "datum['First Tooltip']", "as": "Air Pollution Death Rate"}
+    {"calculate": "datum['First Tooltip']", "as": "Air Pollution Death Rate"},
+    { "window": [
+          { "op": "row_number", 
+          "field": "First Tooltip",
+            "as": "tag_rank"}],
+            "sort": [{"field": "First Tooltip", "order": "descending"}]},
+        { "filter": "datum.tag_rank <= 15"}  
   ],
   "encoding": {
     "color": {
